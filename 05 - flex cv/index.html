@@ -6,342 +6,9 @@
   <title>Afsar Ahmed - Lead Software Engineer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="https://fav.farm/💼" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      color: #1a1a1a;
-      background: #f8fafc;
-    }
-
-    body {
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .panels {
-      min-height: 100vh;
-      display: flex;
-      overflow: hidden;
-    }
-
-    .panel {
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      overflow: hidden;
-      padding: 2rem;
-    }
-
-    .panel::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-      transition: background 0.6s ease;
-    }
-
-    .panel:hover::before {
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .panel.open::before {
-      background: rgba(0, 0, 0, 0.1);
-    }
-
-    .panel1 { 
-      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
-    }
-    .panel2 { 
-      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
-    }
-    .panel3 { 
-      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
-    }
-    .panel4 { 
-      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
-    }
-    .panel5 { 
-      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
-    }
-
-    .panel > * {
-      position: relative;
-      z-index: 2;
-      margin: 0;
-      width: 100%;
-      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      flex: 1 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    .panel > *:first-child { 
-      transform: translateY(-100%);
-      opacity: 0;
-    }
-    .panel.open-active > *:first-child { 
-      transform: translateY(0);
-      opacity: 1;
-    }
-    .panel > *:last-child { 
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    .panel.open-active > *:last-child { 
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .panel-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-    .panel-subtitle {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-align: center;
-    }
-
-    .panel-content {
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.6;
-      text-align: center;
-      max-width: 600px;
-    }
-
-    .panel.open {
-      flex: 5;
-    }
-
-    .panel.open .panel-title {
-      font-size: 1.2rem;
-    }
-
-    .panel.open .panel-subtitle {
-      font-size: 2rem;
-    }
-
-    .panel.open .panel-content {
-      font-size: 1.1rem;
-    }
-
-    /* Contact Panel Styles */
-    .contact-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .contact-list li {
-      margin-bottom: 0.8rem;
-      font-size: 0.9rem;
-    }
-
-    .contact-list a {
-      color: white;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .contact-list a:hover {
-      color: #60a5fa;
-    }
-
-    /* Experience Panel Styles */
-    .experience-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      text-align: left;
-    }
-
-    .experience-list li {
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-      font-size: 0.85rem;
-    }
-
-    .experience-company {
-      font-weight: 600;
-      color: #60a5fa;
-    }
-
-    .experience-role {
-      font-weight: 500;
-      margin-bottom: 0.2rem;
-    }
-
-    .experience-duration {
-      font-size: 0.8rem;
-      opacity: 0.8;
-    }
-
-    /* Skills Panel Styles */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.5rem;
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .skill-item {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 0.5rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      text-align: center;
-      border-left: 3px solid #60a5fa;
-    }
-
-    /* Education Panel Styles */
-    .education-item {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      text-align: left;
-    }
-
-    .education-degree {
-      font-weight: 600;
-      color: #60a5fa;
-      margin-bottom: 0.3rem;
-    }
-
-    .education-school {
-      font-size: 0.9rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .education-duration {
-      font-size: 0.8rem;
-      opacity: 0.8;
-    }
-
-    /* Certifications Panel Styles */
-    .cert-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .cert-list li {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 0.8rem;
-      border-radius: 6px;
-      margin-bottom: 0.8rem;
-      font-size: 0.85rem;
-    }
-
-    .cert-name {
-      font-weight: 600;
-      color: #60a5fa;
-      margin-bottom: 0.2rem;
-    }
-
-    .cert-issuer {
-      font-size: 0.8rem;
-      opacity: 0.8;
-    }
-
-    /* Add subtle border between panels */
-    .panel:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 1px;
-      background: rgba(255, 255, 255, 0.2);
-      z-index: 1;
-    }
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-      .panels {
-        flex-direction: column;
-      }
-      
-      .panel {
-        min-height: 20vh;
-        padding: 1rem;
-      }
-      
-      .panel-title {
-        font-size: 1.2rem;
-      }
-      
-      .panel-subtitle {
-        font-size: 1.8rem;
-      }
-      
-      .panel-content {
-        font-size: 0.9rem;
-      }
-      
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .panel-title {
-        font-size: 1rem;
-      }
-      
-      .panel-subtitle {
-        font-size: 1.5rem;
-      }
-      
-      .panel-content {
-        font-size: 0.8rem;
-      }
-    }
-
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Focus styles for accessibility */
-    .panel:focus {
-      outline: 2px solid rgba(255, 255, 255, 0.5);
-      outline-offset: -2px;
-    }
-  </style>
 
   <div class="panels">
     <!-- Contact Panel -->
@@ -375,24 +42,84 @@
       <p class="panel-content">
         <ul class="experience-list">
           <li>
-            <div class="experience-company">Optum Global Solutions</div>
-            <div class="experience-role">Software Engineering Lead</div>
-            <div class="experience-duration">04/2019 - 09/2024 (5.5 years)</div>
+            <button class="experience-toggle">
+              <div class="experience-header">
+                <div class="experience-company">Optum Global Solutions</div>
+                <div class="experience-role">Software Engineering Lead</div>
+                <div class="experience-duration">04/2019 - 09/2024 (5.5 years)</div>
+              </div>
+              <span class="expand-icon">▼</span>
+            </button>
+            <div class="experience-details">
+              <div class="experience-details-content">
+                <ul>
+                  <li>Led a team of 8 engineers in designing and deploying full-stack applications using React, Angular, Spring Boot, MySQL, and GCP</li>
+                  <li>Architected scalable microservices and utility services, improving system performance by 30% and reducing latency by 20%</li>
+                  <li>Implemented CI/CD pipelines with Jenkins and Docker, cutting deployment time by 25%</li>
+                  <li>Managed cross-functional relationships with stakeholders, engineers, and technical partners to ensure 98% on-time feature delivery</li>
+                  <li>Mentored junior developers, delivering training on Agile and Scrum methodologies</li>
+                </ul>
+              </div>
+            </div>
           </li>
           <li>
-            <div class="experience-company">Tekzenit Software Technologies</div>
-            <div class="experience-role">Senior Software Engineer (Development Team Lead)</div>
-            <div class="experience-duration">10/2014 - 03/2019 (4.5 years)</div>
+            <button class="experience-toggle">
+              <div class="experience-header">
+                <div class="experience-company">Tekzenit Software Technologies</div>
+                <div class="experience-role">Senior Software Engineer (Development Team Lead)</div>
+                <div class="experience-duration">10/2014 - 03/2019 (4.5 years)</div>
+              </div>
+              <span class="expand-icon">▼</span>
+            </button>
+            <div class="experience-details">
+              <div class="experience-details-content">
+                <ul>
+                  <li>Directed a team in architecting, designing, and developing frontend applications with focus on security, performance, scalability, and extensibility</li>
+                  <li>Developed UI components with nested reactive forms, enhancing user interaction efficiency by 30%</li>
+                  <li>Migrated codebase from AngularJS (MVC) to Angular (MVVM) architecture, improving maintainability by 25%</li>
+                  <li>Reduced initial loading time from 18s to 3s, achieving 83% performance improvement</li>
+                  <li>Developed WordPress plugins, themes, standalone scripts, and APIs using PHP and MySQL</li>
+                </ul>
+              </div>
+            </div>
           </li>
           <li>
-            <div class="experience-company">DataRoutes Knowledge Services</div>
-            <div class="experience-role">Software Developer</div>
-            <div class="experience-duration">01/2014 - 10/2014 (10 months)</div>
+            <button class="experience-toggle">
+              <div class="experience-header">
+                <div class="experience-company">DataRoutes Knowledge Services</div>
+                <div class="experience-role">Software Developer</div>
+                <div class="experience-duration">01/2014 - 10/2014 (10 months)</div>
+              </div>
+              <span class="expand-icon">▼</span>
+            </button>
+            <div class="experience-details">
+              <div class="experience-details-content">
+                <ul>
+                  <li>Developed and maintained web applications using PHP, MySQL, and JavaScript</li>
+                  <li>Collaborated with cross-functional teams to deliver high-quality software solutions</li>
+                  <li>Participated in code reviews and implemented best practices for code quality</li>
+                </ul>
+              </div>
+            </div>
           </li>
           <li>
-            <div class="experience-company">Strategeeks</div>
-            <div class="experience-role">Software Engineer</div>
-            <div class="experience-duration">09/2012 - 01/2014 (1.5 years)</div>
+            <button class="experience-toggle">
+              <div class="experience-header">
+                <div class="experience-company">Strategeeks</div>
+                <div class="experience-role">Software Engineer</div>
+                <div class="experience-duration">09/2012 - 01/2014 (1.5 years)</div>
+              </div>
+              <span class="expand-icon">▼</span>
+            </button>
+            <div class="experience-details">
+              <div class="experience-details-content">
+                <ul>
+                  <li>Developed web applications and software solutions using various technologies</li>
+                  <li>Worked on full-stack development projects and database design</li>
+                  <li>Contributed to team development processes and technical documentation</li>
+                </ul>
+              </div>
+            </div>
           </li>
         </ul>
       </p>
@@ -517,92 +244,7 @@
     </div>
   </div>
 
-  <script>
-    const panels = document.querySelectorAll('.panel');
-
-    function toggleOpen() {
-      // Close all other panels
-      panels.forEach(panel => {
-        if (panel !== this) {
-          panel.classList.remove('open', 'open-active');
-        }
-      });
-      
-      // Toggle current panel
-      this.classList.toggle('open');
-    }
-
-    function toggleActive(e) {
-      if (e.propertyName.includes('flex')) {
-        this.classList.toggle('open-active');
-      }
-    }
-
-    // Add event listeners
-    panels.forEach(panel => {
-      panel.addEventListener('click', toggleOpen);
-      panel.addEventListener('transitionend', toggleActive);
-      
-      // Add keyboard support
-      panel.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleOpen.call(panel);
-        }
-      });
-    });
-
-    // Add smooth hover effects
-    panels.forEach(panel => {
-      panel.addEventListener('mouseenter', function() {
-        if (!this.classList.contains('open')) {
-          this.style.transform = 'scale(1.02)';
-        }
-      });
-      
-      panel.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
-      });
-    });
-
-    // Add click to copy email functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const emailLink = document.querySelector('a[href^="mailto:"]');
-      if (emailLink) {
-        emailLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          navigator.clipboard.writeText('afsar_optimistic@yahoo.com').then(() => {
-            // Show a brief notification
-            const notification = document.createElement('div');
-            notification.textContent = 'Email copied to clipboard!';
-            notification.style.cssText = `
-              position: fixed;
-              top: 20px;
-              right: 20px;
-              background: #10b981;
-              color: white;
-              padding: 1rem;
-              border-radius: 8px;
-              z-index: 1000;
-              animation: slideIn 0.3s ease;
-            `;
-            document.body.appendChild(notification);
-            setTimeout(() => notification.remove(), 2000);
-          });
-        });
-      }
-
-      // Add CSS animation
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes slideIn {
-          from { transform: translateX(100%); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
-        }
-      `;
-      document.head.appendChild(style);
-    });
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
